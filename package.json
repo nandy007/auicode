@@ -1,0 +1,310 @@
+{
+  "name": "auicode",
+  "displayName": "Auicode",
+  "description": "Aui tooling for VS Code",
+  "author": "nandy007",
+  "icon": "asset/aui.png",
+  "version": "0.1.0",
+  "publisher": "nandy007",
+  "scripts": {
+    "compile": "tsc -p .",
+    "compile:server": "cd server && tsc -p .",
+    "watch": "tsc --watch",
+    "watch:server": "cd server && tsc --watch",
+    "lint": "tslint -p tslint.json",
+    "postinstall": "cd server && npm install && cd .. && node .agile/postinstall",
+    "hack": "node .agile/hack"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "tslint --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nandy007/auicode.git"
+  },
+  "keywords": [
+    "auicode",
+    "Aui",
+    "aui",
+    "Agile CE"
+  ],
+  "categories": [
+    "Programming Languages"
+  ],
+  "engines": {
+    "vscode": "^1.18.0"
+  },
+  "dependencies": {
+    "glob": "^7.1.2",
+    "vscode-languageclient": "^3.4.2",
+    "vscode-languageserver-types": "^3.4.0"
+  },
+  "activationEvents": [
+    "onLanguage:aui",
+    "onLanguage:bui",
+    "onLanguage:bcp"
+  ],
+  "main": "./client/out/auiMain",
+  "contributes": {
+    "commands": [
+      {
+        "command": "auicode.generateGrammar",
+        "title": "Auicode: Generate grammar from `auicode.grammar.customBlocks`"
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "aui"
+      }
+    ],
+    "languages": [
+      {
+        "id": "aui",
+        "aliases": [
+          "AUI",
+          "aui"
+        ],
+        "extensions": [
+          ".aui",
+          ".bui",
+          ".bcp"
+        ],
+        "configuration": "./languages/aui-language-configuration.json"
+      },
+      {
+        "id": "uiml",
+        "aliases": [
+          "AUI-HTML"
+        ],
+        "configuration": "./languages/uiml-language-configuration.json"
+      },
+      {
+        "id": "postcss",
+        "aliases": [
+          "PostCSS",
+          "POSTCSS"
+        ],
+        "configuration": "./languages/postcss-language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "aui",
+        "scopeName": "source.aui",
+        "path": "./syntaxes/aui-generated.json",
+        "embeddedLanguages": {
+          "text.html.basic": "html",
+          "text.html.uiml": "uiml",
+          "text.jade": "jade",
+          "text.pug": "pug",
+          "text.haml": "haml",
+          "source.css": "css",
+          "source.css.scss": "scss",
+          "source.css.less": "less",
+          "source.css.postcss": "postcss",
+          "source.sass": "sass",
+          "source.stylus": "stylus",
+          "source.js": "javascript",
+          "source.ts": "typescript",
+          "source.coffee": "coffeescript",
+          "text.html.markdown": "md",
+          "source.yaml": "yaml",
+          "source.json": "json",
+          "source.php": "php"
+        }
+      },
+      {
+        "language": "postcss",
+        "scopeName": "source.css.postcss",
+        "path": "./syntaxes/postcss.json"
+      },
+      {
+        "language": "uiml",
+        "scopeName": "text.html.uiml",
+        "path": "./syntaxes/uiml.json",
+        "embeddedLanguages": {
+          "source.js": "javascript"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "auicode configuration",
+      "properties": {
+        "auicode.colorDecorators.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use color decorators in aui"
+        },
+        "auicode.completion.autoImport": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include completion for module export and auto import them"
+        },
+        "auicode.completion.useScaffoldSnippets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable Auicode's built-in scaffolding snippets"
+        },
+        "auicode.grammar.customBlocks": {
+          "type": "object",
+          "default": {
+            "docs": "md",
+            "i18n": "json"
+          },
+          "description": "Mapping from custom block tag name to language name. Used for generating grammar to support syntax highlighting for custom blocks."
+        },
+        "auicode.validation.template": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate uiml in <ui> using eslint-plugin-html"
+        },
+        "auicode.validation.style": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate css/scss/less/postcss in <style>"
+        },
+        "auicode.validation.script": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate js/ts in <script>"
+        },
+        "auicode.format.defaultFormatter.html": {
+          "type": "string",
+          "default": "none",
+          "enum": [
+            "none",
+            "js-beautify-html"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "html formatter of js-beautify"
+          ],
+          "description": "Default formatter for <ui> region"
+        },
+        "auicode.format.defaultFormatter.css": {
+          "type": "string",
+          "default": "prettier",
+          "enum": [
+            "none",
+            "prettier"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "css formatter using css parser from prettier"
+          ],
+          "description": "Default formatter for <style> region"
+        },
+        "auicode.format.defaultFormatter.postcss": {
+          "type": "string",
+          "default": "prettier",
+          "enum": [
+            "none",
+            "prettier"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "postcss formatter using css parser from prettier"
+          ],
+          "description": "Default formatter for <style type='postcss'> region"
+        },
+        "auicode.format.defaultFormatter.scss": {
+          "type": "string",
+          "default": "prettier",
+          "enum": [
+            "none",
+            "prettier"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "scss formatter using scss parser from prettier"
+          ],
+          "description": "Default formatter for <style type='scss'> region"
+        },
+        "auicode.format.defaultFormatter.less": {
+          "type": "string",
+          "default": "prettier",
+          "enum": [
+            "none",
+            "prettier"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "less formatter using postcss parser from prettier"
+          ],
+          "description": "Default formatter for <style type='less'> region"
+        },
+        "auicode.format.defaultFormatter.stylus": {
+          "type": "string",
+          "default": "stylus-supremacy",
+          "enum": [
+            "none",
+            "stylus-supremacy"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "stylus formatter from stylus-supremacy"
+          ],
+          "description": "Default formatter for <style type='stylus'> region"
+        },
+        "auicode.format.defaultFormatter.js": {
+          "type": "string",
+          "default": "prettier",
+          "enum": [
+            "none",
+            "prettier",
+            "vscode-typescript"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "js formatter from prettier",
+            "js formatter from TypeScript"
+          ],
+          "description": "Default formatter for <script> region"
+        },
+        "auicode.format.defaultFormatter.ts": {
+          "type": "string",
+          "default": "prettier",
+          "enum": [
+            "none",
+            "prettier",
+            "vscode-typescript"
+          ],
+          "enumDescriptions": [
+            "disable formatting",
+            "ts formatter using typescript parser from prettier",
+            "ts formatter from TypeScript"
+          ],
+          "description": "Default formatter for <script> region"
+        },
+        "auicode.format.defaultFormatterOptions": {
+          "type": "object",
+          "default": {
+            "js-beautify-html": {}
+          },
+          "description": "Options for all default formatters"
+        },
+        "auicode.format.styleInitialIndent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to have initial indent for <style> region"
+        },
+        "auicode.format.scriptInitialIndent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to have initial indent for <script> region"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.51",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.8.1",
+    "vscode": "^1.1.5"
+  }
+}
