@@ -4,10 +4,11 @@
   "description": "Aui tooling for VS Code",
   "author": "nandy007",
   "icon": "asset/aui.png",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "nandy007",
   "scripts": {
-    "compile": "tsc -p .",
+    "vscode:prepublish": "npm run compile && npm run compile:server",
+    "compile": "cd client && tsc -p .",
     "compile:server": "cd server && tsc -p .",
     "watch": "tsc --watch",
     "watch:server": "cd server && tsc --watch",
