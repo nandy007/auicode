@@ -10,7 +10,7 @@
     "vscode:prepublish": "npm run compile && npm run compile:server",
     "compile": "cd client && tsc -p .",
     "compile:server": "cd server && tsc -p .",
-    "watch": "tsc --watch",
+    "watch": "cd client && tsc --watch",
     "watch:server": "cd server && tsc --watch",
     "lint": "tslint -p tslint.json",
     "postinstall": "cd server && npm install && cd .. && node .agile/postinstall",
@@ -78,7 +78,7 @@
       {
         "id": "uiml",
         "aliases": [
-          "AUI-HTML"
+          "UIML"
         ],
         "configuration": "./languages/uiml-language-configuration.json"
       },
