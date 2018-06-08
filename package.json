@@ -4,7 +4,7 @@
   "description": "Aui tooling for VS Code",
   "author": "nandy007",
   "icon": "asset/aui.png",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "nandy007",
   "scripts": {
     "vscode:prepublish": "npm run compile && npm run compile:server",
@@ -13,8 +13,8 @@
     "watch": "cd client && tsc --watch",
     "watch:server": "cd server && tsc --watch",
     "lint": "tslint -p tslint.json",
-    "postinstall": "cd server && npm install && cd .. && node .agile/postinstall",
-    "hack": "node .agile/hack"
+    "postinstall": "cd server && npm install && cd .. && node ./build/postinstall",
+    "hack": "node ./build/hack"
   },
   "lint-staged": {
     "*.ts": [
