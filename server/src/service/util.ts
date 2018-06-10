@@ -13,7 +13,7 @@ const RESRE = /res\:(.+)/;
 export function initWorkspacePath(url: string | null | undefined){
     workspacePath = url || '';
 
-    hackJSLib();
+    // hackJSLib();
 }
 
 export function getWorkspacePath(){
