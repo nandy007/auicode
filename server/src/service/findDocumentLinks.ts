@@ -14,11 +14,11 @@ function getLinks(arr: Array<DocumentLink>, str: string, offset: number, cb: Fun
 
     let match, matchText, reText, reStart, reEnd;
 
-    if((match=str.match(/(res\:)([^'" ;]+)/)) && match.length > 0){
+    if((match=str.match(/(res\:)([^'" \);]+)/)) && match.length > 0){
         matchText = reText = match[0];
         reStart = match.index;
         reEnd = (match.index || 0) + reText.length;
-    }else if((match=str.match(/((require|url)[ ]*\([ ]*[\'\"])([^\'\"]+)[\'\"][ ]*\)/)) && match.length > 0){
+    }else if((match=str.match(/((require|url)[ ]*\([ ]*[\'\"]?)([^\'\"]+)[\'\"]?[ ]*\)/)) && match.length > 0){
         matchText = match[3];
         reText = match[0];
         reStart = (match.index || 0) + match[1].length;
