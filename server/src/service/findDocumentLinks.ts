@@ -36,18 +36,19 @@ function getLinks(arr: Array<DocumentLink>, str: string, offset: number, cb: Fun
 
     const cbObj = cb(matchText), line = cbObj.line, target = cbObj.target;
 
+    reStart = (reStart || 0) + offset;
+    reEnd = (reEnd || 0) + offset;
+
     if(target){
         const linkObj = new DocumentLink();
-        const start = Position.create(line, reStart || 0);
-        const end = Position.create(line, reEnd || 0);
+        const start = Position.create(line, reStart);
+        const end = Position.create(line, reEnd);
         const range = Range.create(start, end);
         linkObj.range = range;
         linkObj.target = target;
 
         arr.push(linkObj);
     }
-
-    reEnd = reEnd || 0;
 
     getLinks(arr, str.substring(reEnd, str.length), reEnd, cb);
 
