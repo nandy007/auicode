@@ -55,6 +55,7 @@ function getLinks(arr: Array<DocumentLink>, str: string, offset: number, cb: Fun
 }
 
 export function findDocumentLinks(document: TextDocument, documentContext: DocumentContext): DocumentLink[] {
+    console.error(111);
     const text = document.getText();
     const lines = text.split('\n');
     const links: Array<DocumentLink> = [];
