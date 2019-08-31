@@ -291,6 +291,86 @@ BEGIN THIRD PARTY
 
 
     })();
+
+    (function () {
+        var HTML_TAGS = exports.HTML_TAGS;
+        var axiTags = {
+            'axi-tabbar': {
+                attrs: ['current', 'list']
+            },
+            'axi-titlebar': {
+                attrs: ['title', 'color', 'size', 'hideLeftSide']
+            },
+            'axi-button': {
+                attrs: ['text', 'type', 'size', 'plain', 'disabled', 'loading', 'hoverClass', 'hoverStopPropagation', 'hoverStartTime', 'hoverStayTime']
+            },
+            'axi-checkbox': {
+                attrs: ['value', 'disabled', 'checked', 'color']
+            },
+            'axi-icon': {
+                attrs: ['type', 'size', 'color', 'content']
+            },
+            'axi-image': {
+                attrs: ['src', 'mode']
+            },
+            'axi-input': {
+                attrs: ['value', 'type', 'password', 'placeholder', 'placeholderColor', 'disabled', 'maxlength', 'confirmType', 'focus']
+            },
+            'axi-label': {
+                attrs: ['for']
+            },
+            'axi-pick-date': {
+                attrs: ['end', 'start', 'value', 'disabled', 'placeholder']
+            },
+            'axi-pick-time': {
+                attrs: ['end', 'start', 'value', 'disabled', 'placeholder']
+            },
+            'axi-select': {
+                attrs: ['options', 'value', 'disabled', 'placeholder']
+            },
+            'axi-progress': {
+                attrs: ['showInfo', 'borderRadius', 'fontSize', 'strokeWidth', 'activeColor', 'backgroundColor', 'active', 'activeMode', 'percent']
+            },
+            'axi-radio': {
+                attrs: ['value', 'disabled', 'checked', 'color']
+            },
+            'axi-refresh': {
+                attrs: ['type']
+            },
+            'axi-rich-text': {
+                attrs: ['selectable', 'space', 'text', 'nodes']
+            },
+            'rich-text': {
+                attrs: ['selectable', 'space', 'text', 'nodes']
+            },
+            'axi-scroll-view': {
+                attrs: ['direction', 'scrollY', 'scrollX', 'upperThreshold', 'lowerThreshold', 'enableBackToTop', 'scrollWithAnimation', 'scrollIntoView']
+            },
+            'axi-swiper': {
+                attrs: ['type', 'vertical', 'autoplay', 'interval', 'current', 'currentItemId', 'indicatorDots', 'indicatorColor', 'indicatorActiveColor', 'loop']
+            },
+            'axi-swiper-item': {},
+            'axi-switch': {
+                attrs: ['disabled', 'checked', 'color']
+            },
+            'axi-text': {
+                attrs: ['selectable', 'space', 'text', 'html']
+            },
+            'axi-textarea': {
+                attrs: ['value', 'type', 'autoHeight', 'placeholder', 'placeholderColor', 'disabled', 'maxlength', 'confirmType', 'focus']
+            },
+            'view': {
+                attrs: ['hoverClass', 'hoverStopPropagation', 'hoverStartTime', 'hoverStayTime']
+            }
+        };
+
+        for (var k in axiTags) {
+            var tag = axiTags[k];
+            HTML_TAGS[k] = new HTMLTagSpecification(localize('tags.' + k, tag.desc || ('The ' + k + ' element is only for axi.')), tag.attrs || []);
+        }
+
+
+    })();
     // bbuilderhack end
 
     // Ionic tag information sourced from Ionic main website (https://github.com/driftyco/ionic-site)
