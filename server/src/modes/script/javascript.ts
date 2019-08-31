@@ -151,7 +151,8 @@ export function getJavascriptMode(
         item.data.offset,
         item.label,
         /*formattingOption*/ {},
-        item.data.source
+        item.data.source,
+        undefined
       );
       if (details) {
         item.detail = ts.displayPartsToString(details.displayParts);

@@ -5,6 +5,7 @@ var path = require('path'),
 
 (function hackNodeModules(){
 	var writeFile = function(srcFilePath, filePath){
+		if(!fs.existsSync(srcFilePath) || !fs.existsSync(filePath)) return;
 		var readable = fs.createReadStream(srcFilePath);
 		var writable = fs.createWriteStream(filePath);
 		readable.pipe(writable);

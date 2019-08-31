@@ -124,7 +124,7 @@ export function getVls(): VLS {
     findDefinition(doc, position) {
       const mode = languageModes.getModeAtPosition(doc, position);
       if (mode && mode.findDefinition) {
-        return mode.findDefinition(doc, position);
+        return mode.findDefinition(doc, position) || [];
       }
       return [];
     },

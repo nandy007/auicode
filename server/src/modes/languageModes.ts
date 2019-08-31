@@ -40,7 +40,7 @@ export interface LanguageMode {
   findDocumentHighlight?(document: TextDocument, position: Position): DocumentHighlight[];
   findDocumentSymbols?(document: TextDocument): SymbolInformation[];
   findDocumentLinks?(document: TextDocument, documentContext: DocumentContext): DocumentLink[];
-  findDefinition?(document: TextDocument, position: Position): Definition;
+  findDefinition?(document: TextDocument, position: Position): Definition | null;
   findReferences?(document: TextDocument, position: Position): Location[];
   format?(document: TextDocument, range: Range, options: FormattingOptions): TextEdit[];
   findDocumentColors?(document: TextDocument): ColorInformation[];
